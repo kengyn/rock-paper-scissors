@@ -1,8 +1,10 @@
+//computer selection
 function computerPlay() {
     let choices = ['rock', 'paper', 'scissors'];
     return choices[Math.floor(Math.random() * 3)]
 }
 
+//player selection with safeguard from wrong choices
 function playerPlay() {
     let playerSelec = prompt('rock|paper|scissors').toLowerCase()
     if (playerSelec !== 'rock' && playerSelec !== 'paper' && playerSelec !== 'scissors') {
@@ -12,6 +14,7 @@ function playerPlay() {
     }
 }
 
+//comparing player and computer choices and declaring winner
 function playRound() {
     let playerSelec = playerPlay()
     let computer = computerPlay()
@@ -27,6 +30,7 @@ function playRound() {
     }
 }
 
+//function to loop 5 rounds of rock paper scissors and declare winner
 function game() {
     let playerWin = 0;
     let computerWin = 0;
