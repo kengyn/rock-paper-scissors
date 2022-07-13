@@ -1,5 +1,3 @@
-// let playerChoice = prompt('rock, paper, scissors?', '')
-
 function computerPlay() {
     let choices = ['rock', 'paper', 'scissors'];
     return choices[Math.floor(Math.random() * 3)]
@@ -8,38 +6,41 @@ function computerPlay() {
 function playRound() {
     let playerSelec = prompt('rock|paper|scissors').toLowerCase()
     let computer = computerPlay()
-    // if ((playerSelec == 'rock') || (playerSelec == 'scissors') || (playerSelec == 'paper')) {
         if ((playerSelec == 'rock' && computer == 'scissors') || (playerSelec == 'scissors' && computer == 'paper') || (playerSelec == 'paper' && computer == 'rock'))  {
             console.log(`wow sugoi winner winner ${playerSelec} beats ${computer}`)
             return 'win'
         } else if ((computer == 'rock' && playerSelec == 'scissors') || (computer == 'scissors' && playerSelec == 'paper') || (computer == 'paper' && playerSelec == 'rock')) {
             console.log(`lol rekt ${computer} beats ${playerSelec}`)
             return 'lose'
-        } else {
+        } else if ((computer == 'rock' && playerSelec == 'rock') || (computer == 'scissors' && playerSelec == 'scissors') || (computer == 'paper' && playerSelec == 'paper')){
             console.log('tie')
             return 'tie'
+        } else {
+            playRound()
         }
     }
-    
-//     else {
-//         console.log(`you chose ${playerSelec}. pick rock, paper, or scissors`)
-//         playRound()
-// }}
 
 function game() {
-    let playerwin = 0;
-    let computerwin = 0;
+    let playerWin = 0;
+    let computerWin = 0;
     let tie = 0;
     for (let i = 0; i < 5; i++) {
         let result = playRound();
         
         if (result == 'win') {
-            playerwin++
+            playerWin++
         } else if (result == 'lose'){
-            computerwin++
+            computerWin++
         } else {
             tie++
         }
-        console.log(`player: ${playerwin}\ncomputer: ${computerwin}\ntie ${tie}`)
+        console.log(`player: ${playerWin}\ncomputer: ${computerWin}\ntie ${tie}`)
+    }
+    if (playerWin > computerWin) {
+        console.log('you win!!!')
+    } else if (playerWin < computerWin) {
+        console.log('you lose!!!')
+    } else {
+        console.log('tie!!!!')
     }
 }
