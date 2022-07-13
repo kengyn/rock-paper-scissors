@@ -3,8 +3,17 @@ function computerPlay() {
     return choices[Math.floor(Math.random() * 3)]
 }
 
-function playRound() {
+function playerPlay() {
     let playerSelec = prompt('rock|paper|scissors').toLowerCase()
+    if (playerSelec !== 'rock' && playerSelec !== 'paper' && playerSelec !== 'scissors') {
+         return playerPlay()
+    } else {
+        return playerSelec
+    }
+}
+
+function playRound() {
+    let playerSelec = playerPlay()
     let computer = computerPlay()
         if ((playerSelec == 'rock' && computer == 'scissors') || (playerSelec == 'scissors' && computer == 'paper') || (playerSelec == 'paper' && computer == 'rock'))  {
             console.log(`wow sugoi winner winner ${playerSelec} beats ${computer}`)
@@ -12,13 +21,11 @@ function playRound() {
         } else if ((computer == 'rock' && playerSelec == 'scissors') || (computer == 'scissors' && playerSelec == 'paper') || (computer == 'paper' && playerSelec == 'rock')) {
             console.log(`lol rekt ${computer} beats ${playerSelec}`)
             return 'lose'
-        } else if ((computer == 'rock' && playerSelec == 'rock') || (computer == 'scissors' && playerSelec == 'scissors') || (computer == 'paper' && playerSelec == 'paper')){
-            console.log('tie')
-            return 'tie'
         } else {
-            playRound()
-        }
+            console.log(`tie\nplayer:${playerSelec} - computer:${computer}`)
+            return 'tie'
     }
+}
 
 function game() {
     let playerWin = 0;
@@ -26,12 +33,12 @@ function game() {
     let tie = 0;
     for (let i = 0; i < 5; i++) {
         let result = playRound();
-        
+        console.log(i)
         if (result == 'win') {
             playerWin++
         } else if (result == 'lose'){
             computerWin++
-        } else {
+        } else{
             tie++
         }
         console.log(`player: ${playerWin}\ncomputer: ${computerWin}\ntie ${tie}`)
