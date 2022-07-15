@@ -4,27 +4,13 @@ function computerPlay() {
   return choices[Math.floor(Math.random() * 3)];
 }
 
-//player selection with safeguard from wrong choices
-// function playerPlay() {
-//   let playerSelec = prompt("rock|paper|scissors").toLowerCase();
-//   if (
-//     playerSelec !== "rock" &&
-//     playerSelec !== "paper" &&
-//     playerSelec !== "scissors"
-//   ) {
-//     return playerPlay();
-//   } else {
-//     return playerSelec;
-//   }
-// }
-
 //comparing player and computer choices and declaring winner
 function playRound(selection) {
   let playerSelec = selection;
   let computer = computerPlay();
-
+  //log each round
   log(playerSelec, computer);
-
+  //compare
   if (
     (playerSelec == "rock" && computer == "scissors") ||
     (playerSelec == "scissors" && computer == "paper") ||
@@ -47,7 +33,7 @@ function playRound(selection) {
   }
 }
 
-// function to loop 5 rounds of rock paper scissors and declare winner
+// count total number of wins
 let playerWin = 0;
 let computerWin = 0;
 function game(result) {
@@ -58,7 +44,7 @@ function game(result) {
   }
   checkWinner();
 }
-
+//first to reach 5 wins
 let checkWinner = () => {
   const winnerDiv = document.createElement("div");
   if (playerWin == 5) {
@@ -70,9 +56,7 @@ let checkWinner = () => {
   }
 };
 
-let rockbtn = document.querySelector(".rock");
-let paperbtn = document.querySelector(".paper");
-let scissorsbtn = document.querySelector(".scissors");
+//DOM
 let btns = document.querySelectorAll("button");
 let score = document.querySelector(".scoreboard");
 let pScore = document.querySelector(".playerScore");
