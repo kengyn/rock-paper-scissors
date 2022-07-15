@@ -44,32 +44,29 @@ function playRound(selection) {
   } else {
     tScore.textContent += "x";
     roundWinner(playerSelec, computer, "tie");
-    game("tie");
   }
 }
 
 // function to loop 5 rounds of rock paper scissors and declare winner
 let playerWin = 0;
 let computerWin = 0;
-let tie = 0;
 function game(result) {
   if (result == "win") {
     playerWin++;
   } else if (result == "lose") {
     computerWin++;
-  } else {
-    tie++;
   }
   checkWinner();
 }
 
 let checkWinner = () => {
+  const winnerDiv = document.createElement("div");
   if (playerWin == 5) {
-    alert("Winner: Player!!");
+    winnerDiv.textContent = "Winner: Player!!";
+    score.appendChild(winnerDiv);
   } else if (computerWin == 5) {
-    alert("Winner: Computer!!!");
-  } else if (tie == 5) {
-    alert("tie!!!!");
+    winnerDiv.textContent = "Winner: Computer!!";
+    score.appendChild(winnerDiv);
   }
 };
 
@@ -98,10 +95,10 @@ function log(player, computer) {
 
 function roundWinner(player, computer, result) {
   if (result == "win") {
-    div.textContent = `wow sugoi winner winner ${player} beats ${computer}`;
+    div.textContent = `winner winner ${player} beats ${computer}`;
     score.appendChild(div);
   } else if (result == "lose") {
-    div.textContent = `lol rekt ${computer} beats ${player}`;
+    div.textContent = `loser loser ${computer} beats ${player}`;
     score.appendChild(div);
   } else if (result == "tie") {
     div.textContent = "tie";
