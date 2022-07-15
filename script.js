@@ -22,12 +22,15 @@ function computerPlay() {
 function playRound(selection) {
   let playerSelec = selection;
   let computer = computerPlay();
-  console.log(`player:${playerSelec} - computer:${computer}`);
+
+  log(playerSelec, computer);
+
   if (
     (playerSelec == "rock" && computer == "scissors") ||
     (playerSelec == "scissors" && computer == "paper") ||
     (playerSelec == "paper" && computer == "rock")
   ) {
+    pScore.textContent += "x";
     console.log(`wow sugoi winner winner ${playerSelec} beats ${computer}`);
     return "win";
   } else if (
@@ -35,9 +38,11 @@ function playRound(selection) {
     (computer == "scissors" && playerSelec == "paper") ||
     (computer == "paper" && playerSelec == "rock")
   ) {
+    cScore.textContent += "x";
     console.log(`lol rekt ${computer} beats ${playerSelec}`);
     return "lose";
   } else {
+    tScore.textContent += "x";
     console.log(`tie`);
     return "tie";
   }
@@ -73,9 +78,20 @@ let rockbtn = document.querySelector(".rock");
 let paperbtn = document.querySelector(".paper");
 let scissorsbtn = document.querySelector(".scissors");
 let btns = document.querySelectorAll("button");
+let score = document.querySelector(".scoreboard");
+let pScore = document.querySelector(".playerScore");
+let cScore = document.querySelector(".computerScore");
+let tScore = document.querySelector(".tie");
+let battleLog = document.querySelector(".log");
 
 btns.forEach((btn) => {
   btn.addEventListener("click", () => {
     playRound(btn.className);
   });
 });
+
+function log(player, computer) {
+  const p = document.createElement("p");
+  p.textContent = `player:${player}\ncomputer:${computer}`;
+  battleLog.appendChild(p);
+}
